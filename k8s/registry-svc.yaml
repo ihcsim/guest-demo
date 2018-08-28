@@ -1,0 +1,14 @@
+# expose the registry to the host
+kind: Service
+apiVersion: v1
+metadata:
+  name: registry-public
+  namespace: kube-system
+spec:
+  selector:
+    kubernetes.io/minikube-addons: registry
+  type: NodePort
+  ports:
+  - name: http
+    port: 5000
+    nodePort: {{RegistryNodePort}}
